@@ -1,6 +1,9 @@
-import { findStore } from "../../../../services/utils/findStore"
+import { findStore } from '../../../../services/utils/findStore'
 
-export default async ({ body: { store: storeBody }, query: { store: storeQs, productId } }, res) => {
+export default async (
+  { body: { store: storeBody }, query: { store: storeQs, productId } },
+  res
+) => {
   const store = storeBody ?? storeQs
 
   console.log(`Buscando [1] id na loja [${store}]`)

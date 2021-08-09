@@ -2,13 +2,14 @@ import React, { useEffect } from 'react'
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts'
 
 type Items = {
-  date: Date,
-  price: number,
+  date: Date
+  price: number
   store: string
 }
 
-const BarChart: React.FC<{ chartData: Items[] }> = ({ chartData: [...pricedItems] }) => {
-
+const BarChart: React.FC<{ chartData: Items[] }> = ({
+  chartData: [...pricedItems]
+}) => {
   useEffect(() => {
     console.log(pricedItems)
   })
