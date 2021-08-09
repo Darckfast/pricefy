@@ -1,7 +1,8 @@
-const { default: Decimal } = require("decimal.js")
-const { getDescription } = require("../description/descPichau")
-const { getPrice } = require("../price/pricePichau")
-const { getApiData } = require("../urlData/dataPichau")
+import { persistData } from '../firebase/persist'
+import { getDescription } from '../items/description/descPichau'
+import { getPrice } from '../items/price/pricePichau'
+import { getApiData } from '../items/urlData/dataPichau'
+import { formatItem } from '../utils/formatItem'
 
 const getInfo = (productIds) => {
   return productIds.map(async productId => {
@@ -20,19 +21,22 @@ const getInfo = (productIds) => {
       const description = getDescription(apiResponse)
 
       console.log('Preco encontrado')
-      return {
-        store: "pichau",
-        price: new Decimal(productPrice),
+      const item = formatItem({
         productId,
+        productPrice,
         description,
-        date: new Date().getTime()
-      }
+        store: 'pichau'
+      })
+
+      await persistData(item)
+
+      return item
     }
 
-    return { error: "Erro ao buscar info" }
+    return { error: 'Erro ao buscar info' }
   })
 }
 
-module.exports = {
+export {
   getInfo
 }
