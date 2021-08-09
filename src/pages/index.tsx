@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
 import { Container } from '../styles/pages/Home'
 import { ToggleTheme } from '../components/ToggleTheme'
 import BarChart from '../components/charts/BarChart'
-import { useState } from 'react'
+
 import { format, toDate } from 'date-fns'
 
-const Home: React.FC<any> = (props) => {
+const Home: React.FC<any> = props => {
   const [items, setItems] = useState([{ store: '', date: null, price: 0 }])
 
   useEffect(() => {
@@ -39,9 +39,6 @@ const Home: React.FC<any> = (props) => {
     //   setItems(items.map(item => ({ ...item, date: format(toDate(item.date), 'MM/dd/yyyy') })))
     // )
   }, [])
-
-
-
 
   return (
     <Container>
