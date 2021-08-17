@@ -1,13 +1,23 @@
-import { db } from './init'
-import { collection, query, where, getDocs, doc } from 'firebase/firestore'
+import { db } from './nodeApp'
 
 const searchItemInStore = ({ store, productId }) => {
-  return getDocs(
-    query(
-      collection(doc(collection(db, 'stores'), store), 'items'),
-      where('productId', '==', productId.toString()),
-    )
-  )
+  return db
+    .collection('stores')
+    .doc(store)
+    .collection('items')
+    .where('productId', '==', productId.toString())
+    .get()
 }
 
-export { searchItemInStore }
+const getPricesInStore = ({ documentId, store }) => {
+  return db
+    .collection('stores')
+    .doc(store)
+    .collection('items')
+    .doc(documentId)
+    .collection('prices')
+    .orderBy('date', 'desc')
+    .get()
+}
+
+export { searchItemInStore, getPricesInStore }
