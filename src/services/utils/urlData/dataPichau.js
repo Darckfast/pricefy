@@ -7,7 +7,7 @@ const getUrlId = async url => {
     ?.map(val => val.replace('<!--', '').replace('-->', '').trim())
     ?.filter(val => !val.includes('/'))
 
-  return possibleIds ?? null
+  return { id: possibleIds[0], store: 'pichau' }
 }
 
 export { getUrlId }

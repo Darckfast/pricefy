@@ -69,17 +69,20 @@ const Home: React.FC<any> = () => {
     setStatus('sending')
 
     addByUrl(itemUrl)
-      .then(async ([{ productId, store, description }]) => {
+      .then(async ({ productId, store }) => {
         setItems(
           formatDataset(await getItemHistory(productId, store), nextColor)
         )
         setStatus('done')
-        const localItem = addItemLocal(productId, store, description)
+        const localItem = addItemLocal(productId, store)
 
         setPreviousItems(prev => [...prev, localItem])
         setItemUrl('')
       })
-      .catch(() => setStatus('error'))
+      .catch(err => {
+        console.log(err)
+        setStatus('error')
+      })
   }
 
   const getStatus = () => {

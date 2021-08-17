@@ -5,7 +5,7 @@ const getUrlId = url => {
     .filter(val => val)
     .slice(-1)
 
-  return id ?? null
+  return { id: id[0], store: 'amazon' }
 }
 
 export { getUrlId }
