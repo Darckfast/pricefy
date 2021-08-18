@@ -1,26 +1,16 @@
-import {
-  arrayUnion,
-  collection,
-  doc,
-  increment,
-  Timestamp,
-  updateDoc
-} from 'firebase/firestore'
-import { db } from './init'
+import { db, FieldValue, Timestamp } from './nodeApp'
 
-const updateData = (id, { price, store }) => {
-  const documentRef = doc(
-    collection(doc(collection(db, 'stores'), store), 'items'),
-    id
-  )
-
-  return updateDoc(documentRef, {
-    prices: arrayUnion({
+const updateData = async (id, { price, store }) => {
+  return db
+    .collection('stores')
+    .doc(store)
+    .collection('items')
+    .doc(id)
+    .collection('prices')
+    .add({
       date: Timestamp.fromDate(new Date()),
       price
-    }),
-    timesChecked: increment(1)
-  })
+    })
 }
 
 export { updateData }

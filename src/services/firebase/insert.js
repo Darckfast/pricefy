@@ -1,6 +1,4 @@
-import { addDoc, collection, doc, Timestamp } from 'firebase/firestore'
-
-import { db } from './init'
+import { db, Timestamp } from './nodeApp'
 
 const insertPrice = async ({ productId, store, description, price }) => {
   console.log(`Inserindo item ${productId}`)
@@ -9,19 +7,27 @@ const insertPrice = async ({ productId, store, description, price }) => {
     timesChecked: 1,
     productId,
     store,
-    description,
-    prices: [
-      {
-        date: Timestamp.fromDate(new Date()),
-        price
-      }
-    ]
+    description
   }
 
-  return addDoc(
-    collection(doc(collection(db, 'stores'), store), 'items'),
-    formattedItem
-  )
+  const prices = {
+    date: Timestamp.fromDate(new Date()),
+    price
+  }
+
+  const documentRef = await db
+    .collection('stores')
+    .doc(store)
+    .collection('items')
+    .add(formattedItem)
+
+  return db
+    .collection('stores')
+    .doc(store)
+    .collection('items')
+    .doc(documentRef.id)
+    .collection('prices')
+    .add(prices)
 }
 
 export { insertPrice }

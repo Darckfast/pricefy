@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react'
-import { ToggleLabel } from '../styles/pages/Home'
+import { ToggleLabel } from '../styles/components/ToggleLabel'
 
 interface CheckBoxProps {
   label?: string

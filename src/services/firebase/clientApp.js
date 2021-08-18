@@ -1,10 +1,17 @@
 import { initializeApp, getApps } from 'firebase/app'
 import { getFirestore, connectFirestoreEmulator } from 'firebase/firestore'
+import { getAuth } from 'firebase/auth'
 
 const getDBInstance = () => {
   const [appInstace] = getApps()
 
   return getFirestore(appInstace)
+}
+
+const getAuthInstace = () => {
+  const [appInstace] = getApps()
+
+  return getAuth(appInstace)
 }
 
 if (!getApps().length) {
@@ -27,3 +34,4 @@ if (!getApps().length) {
 }
 
 export const db = getDBInstance()
+export const auth = getAuthInstace()

@@ -21,8 +21,8 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "src/services/firebase/search.js", "src/services/firebase/init.js"  ],
+    "**/*.tsx",
+    "src/services/firebase/clientApp.js" ],
   "exclude": [
     "node_modules"
   ]
