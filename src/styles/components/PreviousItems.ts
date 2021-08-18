@@ -25,6 +25,17 @@ export const RecentContainer = styled.div`
   }
 `
 
+export const RecentItem = styled.div`
+  height: 2em;
+  width: 10em;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.6em;
+  position: relative;
+`
+
 export const RecentSpan = styled.span`
   white-space: nowrap;
   overflow: hidden;

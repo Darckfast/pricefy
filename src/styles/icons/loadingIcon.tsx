@@ -47,7 +47,11 @@ const Svg = styled(Icon)`
   }
 `
 
-export const LoadingIcon = ({ className }: { className?: string }): JSX.Element => (
+export const LoadingIcon = ({
+  className
+}: {
+  className?: string
+}): JSX.Element => (
   <Svg className={className}>
     <circle cx="10" cy="10" r="10"></circle>
   </Svg>

@@ -25,6 +25,8 @@ import {
   getItems,
   removeItemLocal
 } from '../services/utils/localstorage'
+import DoubleCheck from '../components/DoubleCheck'
+import { RemoveButton } from '../styles/components/RemoveButton'
 
 const Home: React.FC<any> = () => {
   const [itemUrl, setItemUrl] = useState('')
@@ -61,20 +63,18 @@ const Home: React.FC<any> = () => {
     }
   }
 
-  useEffect(() => {
-    setPreviousItems(getItems())
-  }, [])
+  useEffect(() => readLocalItens(), [])
 
   const addItem = () => {
     setStatus('sending')
 
     addByUrl(itemUrl)
-      .then(async ({ productId, store }) => {
+      .then(async ({ productId, store, description }) => {
         setItems(
           formatDataset(await getItemHistory(productId, store), nextColor)
         )
         setStatus('done')
-        const localItem = addItemLocal(productId, store)
+        const localItem = addItemLocal(productId, store, description)
 
         setPreviousItems(prev => [...prev, localItem])
         setItemUrl('')
@@ -83,6 +83,11 @@ const Home: React.FC<any> = () => {
         console.log(err)
         setStatus('error')
       })
+  }
+
+  const readLocalItens = () => {
+    console.log('reading local itens')
+    setPreviousItems(() => getItems())
   }
 
   const getStatus = () => {
@@ -159,6 +164,7 @@ const Home: React.FC<any> = () => {
                 productId={productId}
                 store={store}
                 addEvent={addRecent}
+                onRemove={readLocalItens}
               />
             ))}
           </RecentSection>

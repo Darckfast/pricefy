@@ -16,7 +16,7 @@ export const darkTheme = {
     labelBackground: '#312b3e',
     labelFont: 'white',
     labelHover: '#5b3969',
-    labelActive: '#e28ff1'
+    labelActive: '#352244'
   }
 }
 
@@ -34,6 +34,6 @@ export const lightTheme = {
     labelBackground: '#e8e8e8',
     labelFont: '#5f5f5f',
     labelHover: '#d8c3e0',
-    labelActive: '#f3b3ff'
+    labelActive: '#ddbdff'
   }
 }

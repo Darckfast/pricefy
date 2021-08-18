@@ -20,4 +20,16 @@ const getPricesInStore = ({ documentId, store }) => {
     .get()
 }
 
-export { searchItemInStore, getPricesInStore }
+const getItemInStore = async itemToSearch => {
+  const document = await searchItemInStore(itemToSearch)
+
+  if (document.empty) {
+    return itemToSearch
+  }
+
+  const [item] = document.docs
+
+  return item.data()
+}
+
+export { searchItemInStore, getPricesInStore, getItemInStore }
