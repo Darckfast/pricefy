@@ -20,13 +20,7 @@ import {
   addByUrl,
   getItemHistory
 } from '../services/utils/datasets'
-import {
-  addItemLocal,
-  getItems,
-  removeItemLocal
-} from '../services/utils/localstorage'
-import DoubleCheck from '../components/DoubleCheck'
-import { RemoveButton } from '../styles/components/RemoveButton'
+import { addItemLocal, getItems } from '../services/utils/localstorage'
 
 const Home: React.FC<any> = () => {
   const [itemUrl, setItemUrl] = useState('')
