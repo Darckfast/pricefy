@@ -5,7 +5,7 @@ const aggregateByDateAndPrice = async products => {
   const histories = await Promise.all(await getItemHistory(products))
 
   const labels = getAllLabels(histories)
-
+  console.log(labels)
   const historyDataset = histories.map(
     ({ description, prices, productId, store }) => ({
       label: description,
@@ -40,13 +40,14 @@ const fillData = (labels, prices) => {
   }
 
   const data = []
-  let { price: currentPrice, date: currentDate } = prices.shift()
+  let { price: currentPrice, date: currentDate } = prices.pop()
 
   labels.forEach(label => {
+    console.log(label, currentPrice)
     data.push(currentPrice)
 
     if (format(new Date(currentDate), 'MM/dd/yyyy HH:mm') === label) {
-      const next = prices.shift()
+      const next = prices.pop()
 
       if (next) {
         currentDate = next.date

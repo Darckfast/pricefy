@@ -22,7 +22,7 @@ import {
 } from '../services/utils/datasets'
 import { addItemLocal, getItems } from '../services/utils/localstorage'
 
-const Home: React.FC<any> = () => {
+const Home: React.FC = () => {
   const [itemUrl, setItemUrl] = useState('')
   const [status, setStatus] = useState(null)
   const [previousItems, setPreviousItems] = useState([])
