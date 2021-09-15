@@ -2,8 +2,6 @@
 
 This repo make part of a series of repositories with a couple of libs/framework already setup, just to make life a bit easier
 
-![Demo](.github/demo.gif)
-
 ## What is included in this repo?
 
 This repo include the following libs/framework/features:
